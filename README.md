@@ -8,8 +8,8 @@ Design a baseline nozzle in SolidWorks, evaluate its performance in MATLAB, and 
 
 ## Tools
 
-- **SolidWorks** — nozzle CAD and final geometry
-- **MATLAB** — analytical modeling, parameter sweep, optimization, and visualization
+- **SolidWorks**
+- **MATLAB** 
 
 ## Workflow
 
@@ -60,8 +60,6 @@ The optimization varies:
 Geometric constraints are applied to ensure physically reasonable nozzle dimensions.
 
 ## Limitations
-
-This project is intended for **educational design exploration**, not physical engine performance prediction.
 
 The model:
 
