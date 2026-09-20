@@ -3,7 +3,7 @@
 clear;
 clc;
 
-%% Add functions folder
+% Add functions folder
 
 addpath('functions');
 
