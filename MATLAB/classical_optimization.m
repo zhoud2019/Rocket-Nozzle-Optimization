@@ -1,6 +1,5 @@
-%% ============================================================
-%  CLASSICAL ROCKET NOZZLE OPTIMIZATION
-%  ============================================================
+%% CLASSICAL ROCKET NOZZLE OPTIMIZATION
+
 
 clear;
 clc;
@@ -29,9 +28,8 @@ options = optimoptions('fmincon', ...
     'StepTolerance', 1e-10, ...
     'ConstraintTolerance', 1e-10);
 
-%% ============================================================
-%  1. MAXIMIZE THRUST
-%  ============================================================
+%% 1. MAXIMIZE THRUST
+
 
 fprintf('\n========================================\n');
 fprintf('MAXIMUM THRUST OPTIMIZATION\n');
@@ -82,9 +80,7 @@ fprintf('Thrust-to-mass ratio:  %.4f N/kg\n', F / nozzle_mass);
 
 fprintf('\nOptimization exit flag: %d\n', exitflag_thrust);
 
-%% ============================================================
-%  2. MAXIMIZE THRUST-TO-MASS RATIO
-%  ============================================================
+%% 2. MAXIMIZE THRUST-TO-MASS RATIO
 
 fprintf('\n========================================\n');
 fprintf('MAXIMUM THRUST-TO-MASS OPTIMIZATION\n');
@@ -132,9 +128,8 @@ fprintf('Thrust-to-mass ratio:  %.4f N/kg\n', F / nozzle_mass);
 
 fprintf('\nOptimization exit flag: %d\n', exitflag_TM);
 
-%% ============================================================
-%  FINAL COMPARISON
-%  ============================================================
+%% FINAL COMPARISON
+
 
 fprintf('\n========================================\n');
 fprintf('OPTIMIZATION SUMMARY\n');
@@ -148,9 +143,8 @@ fprintf('\nMaximum Thrust-to-Mass Design:\n');
 fprintf('Dt = %.4f mm | De = %.4f mm | Ld = %.4f mm\n', ...
     x_TM(1), x_TM(2), x_TM(3));
 
-%% ============================================================
-%  SAVE OPTIMIZATION RESULTS
-%  ============================================================
+%% SAVE OPTIMIZATION RESULTS
+
 
 if ~exist('../Results/Data', 'dir')
     mkdir('../Results/Data');
