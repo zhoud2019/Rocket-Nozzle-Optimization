@@ -1,15 +1,13 @@
-%% Save Baseline vs Optimized Comparison Data
+% Save Baseline vs Optimized Comparison Data
 
 clear;
 clc;
 
-%% Add functions folder
+% Add functions folder
 
 addpath('functions');
 
-%% ============================================================
 % BASELINE DESIGN
-% ============================================================
 
 Dt_base = 20;
 De_base = 60;
@@ -24,9 +22,7 @@ t_base = 3;
 
 TM_base = F_base / mass_base;
 
-%% ============================================================
 % OPTIMIZED DESIGN
-% ============================================================
 
 Dt_opt = 22;
 De_opt = 50;
@@ -41,9 +37,7 @@ t_opt = 3;
 
 TM_opt = F_opt / mass_opt;
 
-%% ============================================================
 % CREATE COMPARISON TABLE
-% ============================================================
 
 Design = ["Baseline"; "Optimized"];
 
@@ -76,17 +70,13 @@ comparison = table( ...
     NozzleMass_kg, ...
     ThrustToMass_N_kg);
 
-%% ============================================================
 % SAVE DATA
-% ============================================================
 
 writetable( ...
     comparison, ...
     '../Results/Data/baseline_vs_optimized.csv');
 
-%% ============================================================
 % DISPLAY
-% ============================================================
 
 fprintf('\n========================================\n');
 fprintf('COMPARISON DATA SAVED\n');
