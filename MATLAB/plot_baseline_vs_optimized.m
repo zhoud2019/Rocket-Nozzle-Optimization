@@ -1,16 +1,14 @@
-%% Baseline vs Optimized Nozzle - Final Comparison Plots
+% Baseline vs Optimized Nozzle - Final Comparison Plots
 
 clear;
 clc;
 close all;
 
-%% ============================================================
 % LOAD COMPARISON DATA
-% ============================================================
 
 data = readtable('../Results/Data/baseline_vs_optimized.csv');
 
-%% Extract data
+% Extract data
 
 design = categorical(data.Design);
 
@@ -20,17 +18,13 @@ thrust_mass = data.ThrustToMass_N_kg;
 mass_flow = data.MassFlow_kg_s;
 exit_velocity = data.ExitVelocity_m_s;
 
-%% ============================================================
 % CREATE FIGURES FOLDER IF NEEDED
-% ============================================================
 
 if ~exist('../Results/Figures', 'dir')
     mkdir('../Results/Figures');
 end
 
-%% ============================================================
 % FIGURE 1 - THRUST
-% ============================================================
 
 figure;
 
@@ -43,9 +37,8 @@ grid on;
 
 saveas(gcf, '../Results/Figures/baseline_vs_optimized_thrust.png');
 
-%% ============================================================
 % FIGURE 2 - THRUST-TO-MASS RATIO
-% ============================================================
+
 
 figure;
 
@@ -59,9 +52,7 @@ grid on;
 saveas(gcf, ...
     '../Results/Figures/baseline_vs_optimized_thrust_mass.png');
 
-%% ============================================================
 % FIGURE 3 - NOZZLE MASS
-% ============================================================
 
 figure;
 
@@ -75,9 +66,7 @@ grid on;
 saveas(gcf, ...
     '../Results/Figures/baseline_vs_optimized_mass.png');
 
-%% ============================================================
 % FIGURE 4 - MASS FLOW RATE
-% ============================================================
 
 figure;
 
@@ -91,9 +80,7 @@ grid on;
 saveas(gcf, ...
     '../Results/Figures/baseline_vs_optimized_mass_flow.png');
 
-%% ============================================================
 % FIGURE 5 - EXIT VELOCITY
-% ============================================================
 
 figure;
 
@@ -107,9 +94,7 @@ grid on;
 saveas(gcf, ...
     '../Results/Figures/baseline_vs_optimized_exit_velocity.png');
 
-%% ============================================================
 % DISPLAY
-% ============================================================
 
 fprintf('\n========================================\n');
 fprintf('COMPARISON FIGURES SAVED\n');
