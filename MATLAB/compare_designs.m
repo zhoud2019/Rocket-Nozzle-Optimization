@@ -1,4 +1,4 @@
-%% Baseline vs Optimized Nozzle Comparison
+% Baseline vs Optimized Nozzle Comparison
 
 clear;
 clc;
@@ -7,9 +7,8 @@ clc;
 
 addpath('functions');
 
-%% ============================================================
 % BASELINE DESIGN
-% ============================================================
+
 
 Dt_base = 20;
 De_base = 60;
@@ -25,9 +24,8 @@ t_base = 3;
 
 TM_base = F_base / mass_base;
 
-%% ============================================================
 % OPTIMIZED DESIGN
-% ============================================================
+
 
 Dt_opt = 22;
 De_opt = 50;
@@ -43,9 +41,8 @@ t_opt = 3;
 
 TM_opt = F_opt / mass_opt;
 
-%% ============================================================
 % CALCULATE PERCENT CHANGES
-% ============================================================
+
 
 thrust_change = (F_opt / F_base - 1) * 100;
 mass_change = (mass_opt / mass_base - 1) * 100;
@@ -53,9 +50,8 @@ TM_change = (TM_opt / TM_base - 1) * 100;
 mdot_change = (mdot_opt / mdot_base - 1) * 100;
 ve_change = (ve_opt / ve_base - 1) * 100;
 
-%% ============================================================
 % DISPLAY RESULTS
-% ============================================================
+
 
 fprintf('\n========================================\n');
 fprintf('BASELINE VS OPTIMIZED NOZZLE\n');
@@ -104,9 +100,8 @@ fprintf('Nozzle mass:        %8.4f kg    %8.4f kg\n', ...
 fprintf('Thrust-to-mass:     %8.2f N/kg  %8.2f N/kg\n', ...
     TM_base, TM_opt);
 
-%% ============================================================
 % PERCENT CHANGES
-% ============================================================
+
 
 fprintf('\n--- Change from Baseline ---\n');
 
