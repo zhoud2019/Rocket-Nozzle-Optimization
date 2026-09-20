@@ -1,8 +1,6 @@
 function [c, ceq] = nozzle_constraints(x)
 
-%% ============================================================
-%  NOZZLE DESIGN CONSTRAINTS
-%  ============================================================
+%% NOZZLE DESIGN CONSTRAINTS
 
 Dt = x(1);       % Throat diameter [mm]
 De = x(2);       % Exit diameter [mm]
