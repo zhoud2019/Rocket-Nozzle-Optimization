@@ -1,16 +1,16 @@
 function [c, ceq] = nozzle_constraints(x)
 
-%% NOZZLE DESIGN CONSTRAINTS
+% NOZZLE DESIGN CONSTRAINTS
 
 Dt = x(1);       % Throat diameter [mm]
 De = x(2);       % Exit diameter [mm]
 Ld = x(3);       % Diverging length [mm]
 
-%% Diverging half-angle
+% Diverging half-angle
 
 theta_d = atand((De - Dt) / (2 * Ld));
 
-%% Inequality constraints
+% Inequality constraints
 %
 % fmincon requires:
 %       c(x) <= 0
@@ -24,7 +24,7 @@ c2 = theta_d - 20;
 
 c = [c1; c2];
 
-%% No equality constraints
+% No equality constraints
 
 ceq = [];
 
