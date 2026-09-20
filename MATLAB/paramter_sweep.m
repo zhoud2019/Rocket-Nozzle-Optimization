@@ -1,11 +1,10 @@
-%% ============================================================
 %  ROCKET NOZZLE PARAMETER SWEEP
-%  ============================================================
+
 
 clear;
 clc;
 
-%% Design Variables
+% Design Variables
 
 Dt_values = 18:1:22;       % Throat diameter [mm]
 De_values = 50:5:70;       % Exit diameter [mm]
@@ -14,22 +13,20 @@ Ld_values = 50:10:90;      % Diverging length [mm]
 Lc = 30;                   % Converging length [mm]
 t = 3;                     % Wall thickness [mm]
 
-%% Number of Designs
+% Number of Designs
 
 num_designs = ...
     length(Dt_values) * ...
     length(De_values) * ...
     length(Ld_values);
 
-%% Results Storage
+% Results Storage
 
 results = zeros(num_designs, 10);
 
 row = 1;
 
-%% ============================================================
 %  PARAMETER SWEEP
-%  ============================================================
 
 for Dt = Dt_values
 
@@ -72,13 +69,11 @@ for Dt = Dt_values
     end
 end
 
-%% Remove unused rows
+% Remove unused rows
 
 results = results(1:row-1, :);
 
-%% ============================================================
 %  CONVERT TO TABLE
-%  ============================================================
 
 results_table = array2table(results, ...
     'VariableNames', { ...
@@ -93,9 +88,7 @@ results_table = array2table(results, ...
     'NozzleMass_kg', ...
     'ThrustToMass_N_kg'});
 
-%% ============================================================
 %  FIND BEST DESIGNS
-%  ============================================================
 
 [~, max_thrust_index] = ...
     max(results_table.Thrust_N);
@@ -106,9 +99,7 @@ results_table = array2table(results, ...
 best_thrust = results_table(max_thrust_index, :);
 best_TM = results_table(max_TM_index, :);
 
-%% ============================================================
 %  DISPLAY RESULTS
-%  ============================================================
 
 fprintf('\n========================================\n');
 fprintf('PARAMETER SWEEP RESULTS\n');
@@ -138,9 +129,7 @@ fprintf('Nozzle mass:           %.4f kg\n', best_TM.NozzleMass_kg);
 fprintf('Thrust-to-mass ratio:  %.2f N/kg\n', ...
     best_TM.ThrustToMass_N_kg);
 
-%% ============================================================
 %  SAVE RESULTS
-%  ============================================================
 
 if ~exist('../Results/Data', 'dir')
     mkdir('../Results/Data');
