@@ -1,13 +1,13 @@
-%% Optimized Nozzle Design Test
+% Optimized Nozzle Design Test
 
 clear;
 clc;
 
-%% Add functions folder
+% Add functions folder
 
 addpath('functions');
 
-%% Optimized SolidWorks dimensions
+% Optimized SolidWorks dimensions
 
 Dt = 22;
 De = 50;
@@ -15,17 +15,17 @@ Lc = 30;
 Ld = 50;
 t = 3;
 
-%% Run nozzle model
+% Run nozzle model
 
 [F, mdot, ve, Me, Pe, Te, At, Ae, nozzle_mass, V_wall, ...
     Tt, Pt, rho_t, a_t, Vt, ve_ideal, rho_e, a_e] = ...
     nozzle_performance(Dt, De, Lc, Ld, t);
 
-%% Calculate thrust-to-mass ratio
+% Calculate thrust-to-mass ratio
 
 TM = F / nozzle_mass;
 
-%% Display results
+% Display results
 
 fprintf('\n========================================\n');
 fprintf('OPTIMIZED NOZZLE DESIGN\n');
