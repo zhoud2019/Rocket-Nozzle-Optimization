@@ -2,39 +2,9 @@ function [F, mdot, ve, Me, Pe, Te, At, Ae, nozzle_mass, V_wall, ...
           Tt, Pt, rho_t, a_t, Vt, ve_ideal, rho_e, a_e] = ...
     nozzle_performance(Dt, De, Lc, Ld, t)
 
-%% ============================================================
-%  ROCKET NOZZLE PERFORMANCE MODEL
-%  ============================================================
-%
-%  Simplified 1-D isentropic nozzle model.
-%
-%  Inputs:
-%    Dt  = Throat diameter [mm]
-%    De  = Exit diameter [mm]
-%    Lc  = Converging length [mm]
-%    Ld  = Diverging length [mm]
-%    t   = Wall thickness [mm]
-%
-%  Outputs:
-%    F           = Thrust [N]
-%    mdot        = Mass flow rate [kg/s]
-%    ve          = Exit velocity [m/s]
-%    Me          = Exit Mach number
-%    Pe          = Exit pressure [Pa]
-%    Te          = Exit temperature [K]
-%    At          = Throat area [m^2]
-%    Ae          = Exit area [m^2]
-%    nozzle_mass = Nozzle wall mass [kg]
-%    V_wall      = Nozzle wall volume [m^3]
-%    Tt          = Throat temperature [K]
-%    Pt          = Throat pressure [Pa]
-%    rho_t       = Throat density [kg/m^3]
-%    a_t         = Throat speed of sound [m/s]
-%    Vt          = Throat velocity [m/s]
 
-%% ============================================================
-%  OPERATING CONDITIONS
-%  ============================================================
+%%  OPERATING CONDITIONS
+
 
 Pc = 3e6;              % Chamber pressure [Pa]
 Tc = 3000;             % Chamber temperature [K]
@@ -42,15 +12,13 @@ gamma = 1.2;           % Specific heat ratio
 R = 355;               % Specific gas constant [J/(kg*K)]
 Pa = 101325;           % Ambient pressure [Pa]
 
-%% ============================================================
-%  MATERIAL PROPERTIES
-%  ============================================================
+%% MATERIAL PROPERTIES
+
 
 rho_material = 8000;  % Material density [kg/m^3]
 
-%% ============================================================
-%  NOZZLE EFFICIENCY
-%  ============================================================
+%% NOZZLE EFFICIENCY
+
 
 % Simplified constant nozzle efficiency.
 %
@@ -62,9 +30,8 @@ rho_material = 8000;  % Material density [kg/m^3]
 
 eta = 0.95;
 
-%% ============================================================
-%  CONVERT GEOMETRY FROM mm TO m
-%  ============================================================
+%% CONVERT GEOMETRY FROM mm TO m
+
 
 Dt_m = Dt / 1000;
 De_m = De / 1000;
@@ -72,29 +39,25 @@ Lc_m = Lc / 1000;
 Ld_m = Ld / 1000;
 t_m  = t / 1000;
 
-%% ============================================================
-%  FIXED CHAMBER DIAMETER
-%  ============================================================
+%% FIXED CHAMBER DIAMETER
+
 
 Dc = 40;                % Chamber diameter [mm]
 Dc_m = Dc / 1000;
 
-%% ============================================================
-%  FLOW AREAS
-%  ============================================================
+%% FLOW AREAS
+
 
 At = pi * Dt_m^2 / 4;
 Ae = pi * De_m^2 / 4;
 
-%% ============================================================
-%  AREA RATIO
-%  ============================================================
+%% AREA RATIO
+
 
 AR = Ae / At;
 
-%% ============================================================
-%  GEOMETRY CALCULATIONS
-%  ============================================================
+%% GEOMETRY CALCULATIONS
+
 
 Rc = Dc_m / 2;
 Rt = Dt_m / 2;
@@ -108,15 +71,7 @@ theta_c = atand((Rc - Rt) / Lc_m);
 
 theta_d = atand((Re - Rt) / Ld_m);
 
-%% ============================================================
-%  THROAT CONDITIONS
-%  ============================================================
-%
-%  The throat is assumed to be choked:
-%
-%       Mt = 1
-%
-%  Isentropic relations give the static conditions at the throat.
+%% THROAT CONDITIONS
 
 Mt = 1;
 
@@ -136,9 +91,8 @@ a_t = sqrt(gamma * R * Tt);
 % Throat velocity
 Vt = Mt * a_t;
 
-%% ============================================================
-%  EXIT MACH NUMBER
-%  ============================================================
+%% EXIT MACH NUMBER
+
 
 areaMach = @(M) ...
     (1/M) * ...
@@ -149,16 +103,14 @@ areaMach = @(M) ...
 % Supersonic solution
 Me = fzero(areaMach, 3);
 
-%% ============================================================
-%  EXIT TEMPERATURE
-%  ============================================================
+%% EXIT TEMPERATURE
+
 
 Te = Tc / ...
     (1 + ((gamma - 1)/2) * Me^2);
 
-%% ============================================================
-%  EXIT PRESSURE
-%  ============================================================
+%% EXIT PRESSURE
+
 
 Pe = Pc * ...
     (Te / Tc)^(gamma/(gamma - 1));
@@ -170,9 +122,8 @@ rho_e = Pe / (R * Te);
 a_e = sqrt(gamma * R * Te);
 
 
-%% ============================================================
-%  EXIT VELOCITY
-%  ============================================================
+%% EXIT VELOCITY
+
 
 ve_ideal = sqrt( ...
     (2 * gamma / (gamma - 1)) * R * Tc * ...
@@ -181,9 +132,8 @@ ve_ideal = sqrt( ...
 % Apply simplified nozzle efficiency
 ve = sqrt(eta) * ve_ideal;
 
-%% ============================================================
-%  MASS FLOW RATE
-%  ============================================================
+%% MASS FLOW RATE
+
 
 % Calculate mass flow from throat conditions:
 %
@@ -194,9 +144,8 @@ ve = sqrt(eta) * ve_ideal;
 
 mdot = rho_t * At * Vt;
 
-%% ============================================================
-%  THRUST
-%  ============================================================
+%% THRUST
+
 
 F_momentum = mdot * ve;
 
@@ -204,9 +153,8 @@ F_pressure = (Pe - Pa) * Ae;
 
 F = F_momentum + F_pressure;
 
-%% ============================================================
-%  NOZZLE WALL MASS
-%  ============================================================
+%% NOZZLE WALL MASS
+
 
 % Inner radii after accounting for wall thickness
 
