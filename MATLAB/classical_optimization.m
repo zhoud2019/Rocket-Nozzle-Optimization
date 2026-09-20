@@ -1,10 +1,10 @@
-%% CLASSICAL ROCKET NOZZLE OPTIMIZATION
+% CLASSICAL ROCKET NOZZLE OPTIMIZATION
 
 
 clear;
 clc;
 
-%% Design Variables
+% Design Variables
 %
 % x = [Dt, De, Ld]
 %
@@ -14,12 +14,12 @@ clc;
 
 x0 = [20, 60, 70];
 
-%% Design Bounds
+% Design Bounds
 
 lb = [18, 50, 50];
 ub = [22, 70, 90];
 
-%% Optimization Options
+% Optimization Options
 
 options = optimoptions('fmincon', ...
     'Display', 'iter', ...
@@ -28,7 +28,7 @@ options = optimoptions('fmincon', ...
     'StepTolerance', 1e-10, ...
     'ConstraintTolerance', 1e-10);
 
-%% 1. MAXIMIZE THRUST
+% 1. MAXIMIZE THRUST
 
 
 fprintf('\n========================================\n');
@@ -48,7 +48,7 @@ fprintf('========================================\n');
     @nozzle_constraints, ...
     options);
 
-%% Evaluate optimized thrust design
+% Evaluate optimized thrust design
 
 Dt = x_thrust(1);
 De = x_thrust(2);
@@ -80,7 +80,7 @@ fprintf('Thrust-to-mass ratio:  %.4f N/kg\n', F / nozzle_mass);
 
 fprintf('\nOptimization exit flag: %d\n', exitflag_thrust);
 
-%% 2. MAXIMIZE THRUST-TO-MASS RATIO
+% 2. MAXIMIZE THRUST-TO-MASS RATIO
 
 fprintf('\n========================================\n');
 fprintf('MAXIMUM THRUST-TO-MASS OPTIMIZATION\n');
@@ -99,7 +99,7 @@ fprintf('========================================\n');
     @nozzle_constraints, ...
     options);
 
-%% Evaluate optimized thrust-to-mass design
+% Evaluate optimized thrust-to-mass design
 
 Dt = x_TM(1);
 De = x_TM(2);
@@ -128,7 +128,7 @@ fprintf('Thrust-to-mass ratio:  %.4f N/kg\n', F / nozzle_mass);
 
 fprintf('\nOptimization exit flag: %d\n', exitflag_TM);
 
-%% FINAL COMPARISON
+% FINAL COMPARISON
 
 
 fprintf('\n========================================\n');
@@ -143,7 +143,7 @@ fprintf('\nMaximum Thrust-to-Mass Design:\n');
 fprintf('Dt = %.4f mm | De = %.4f mm | Ld = %.4f mm\n', ...
     x_TM(1), x_TM(2), x_TM(3));
 
-%% SAVE OPTIMIZATION RESULTS
+% SAVE OPTIMIZATION RESULTS
 
 
 if ~exist('../Results/Data', 'dir')
