@@ -1,14 +1,14 @@
-%% 3D Design Space Visualization - Final Version
+% 3D Design Space Visualization - Final Version
 
 clear;
 clc;
 close all;
 
-%% Add functions folder to MATLAB path
+% Add functions folder to MATLAB path
 
 addpath('functions');
 
-%% Load parameter sweep data
+% Load parameter sweep data
 
 data = readtable('../Results/Data/parameter_sweep_results.csv');
 
@@ -19,9 +19,7 @@ Ld = data.Ld_mm;
 thrust = data.Thrust_N;
 thrust_mass = data.ThrustToMass_N_kg;
 
-%% ============================================================
 %  BASELINE DESIGN
-%  ============================================================
 
 Dt_baseline = 20;
 De_baseline = 60;
@@ -32,9 +30,7 @@ Ld_baseline = 70;
 
 TM_base = F_base / mass_base;
 
-%% ============================================================
 %  MAXIMUM THRUST DESIGN
-%  ============================================================
 
 Dt_thrust = 22;
 De_thrust = 50;
@@ -45,9 +41,7 @@ Ld_thrust = 70;
 
 TM_thrust = F_thrust / mass_thrust;
 
-%% ============================================================
 %  MAXIMUM THRUST-TO-MASS DESIGN
-%  ============================================================
 
 Dt_TM = 22;
 De_TM = 50;
@@ -58,9 +52,7 @@ Ld_TM = 50;
 
 TM_TM = F_TM / mass_TM;
 
-%% ============================================================
 %  FIGURE 1 - THRUST DESIGN SPACE
-%  ============================================================
 
 figure;
 
@@ -114,9 +106,7 @@ hold off;
 
 saveas(gcf, '../Results/Figures/design_space_thrust.png');
 
-%% ============================================================
 %  FIGURE 2 - THRUST-TO-MASS DESIGN SPACE
-%  ============================================================
 
 figure;
 
@@ -170,9 +160,7 @@ hold off;
 
 saveas(gcf, '../Results/Figures/design_space_thrust_mass.png');
 
-%% ============================================================
 %  PRINT SUMMARY
-%  ============================================================
 
 fprintf('\n========================================\n');
 fprintf('DESIGN SPACE VISUALIZATION\n');
