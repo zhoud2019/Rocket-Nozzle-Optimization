@@ -4,9 +4,8 @@ clc;
 % Add functions folder
 addpath('functions');
 
-%% ============================================================
-%  BASELINE NOZZLE GEOMETRY
-%  ============================================================
+%% BASELINE NOZZLE GEOMETRY
+
 
 Dt = 20;    % Throat diameter [mm]
 De = 60;    % Exit diameter [mm]
@@ -14,17 +13,15 @@ Lc = 30;    % Converging length [mm]
 Ld = 70;    % Diverging length [mm]
 t  = 3;     % Wall thickness [mm]
 
-%% ============================================================
-%  CALCULATE NOZZLE PERFORMANCE
-%  ============================================================
+%% CALCULATE NOZZLE PERFORMANCE
+
 
 [F, mdot, ve, Me, Pe, Te, At, Ae, nozzle_mass, V_wall, ...
  Tt, Pt, rho_t, a_t, Vt, ve_ideal, rho_e, a_e] = ...
     nozzle_performance(Dt, De, Lc, Ld, t);
 
-%% ============================================================
-%  DISPLAY RESULTS
-%  ============================================================
+%% DISPLAY RESULTS
+
 
 fprintf('==============================\n');
 fprintf('BASELINE NOZZLE\n');
