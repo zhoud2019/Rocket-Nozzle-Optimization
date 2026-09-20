@@ -4,7 +4,7 @@ clc;
 % Add functions folder
 addpath('functions');
 
-%% BASELINE NOZZLE GEOMETRY
+% BASELINE NOZZLE GEOMETRY
 
 
 Dt = 20;    % Throat diameter [mm]
@@ -13,14 +13,14 @@ Lc = 30;    % Converging length [mm]
 Ld = 70;    % Diverging length [mm]
 t  = 3;     % Wall thickness [mm]
 
-%% CALCULATE NOZZLE PERFORMANCE
+% CALCULATE NOZZLE PERFORMANCE
 
 
 [F, mdot, ve, Me, Pe, Te, At, Ae, nozzle_mass, V_wall, ...
  Tt, Pt, rho_t, a_t, Vt, ve_ideal, rho_e, a_e] = ...
     nozzle_performance(Dt, De, Lc, Ld, t);
 
-%% DISPLAY RESULTS
+% DISPLAY RESULTS
 
 
 fprintf('==============================\n');
@@ -46,7 +46,7 @@ fprintf('Throat density:         %.4f kg/m^3\n', rho_t);
 fprintf('Throat speed of sound:  %.2f m/s\n', a_t);
 fprintf('Throat velocity:        %.2f m/s\n', Vt);
 
-%% Mass flow consistency check
+% Mass flow consistency check
 
 mdot_check = rho_t * At * Vt;
 
